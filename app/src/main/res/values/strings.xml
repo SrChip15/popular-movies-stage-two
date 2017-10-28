@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">FlixT</string>
+    <string name="no_movies">No Movies To Display</string>
+</resources>

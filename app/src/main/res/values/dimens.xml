@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="grid_side_margin">3dp</dimen>
+
+    <dimen name="grid_list_item_side_margin">3dp</dimen>
+
+    <dimen name="grid_list_item_top_margin">6dp</dimen>
+
+    <integer name="grid_columns">2</integer>
+</resources>
