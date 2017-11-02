@@ -12,7 +12,7 @@ public interface TmdbApiService {
 
 	@GET("discover/movie")
 	Call<DiscoverResponse> getMovies(
-			@Query("api_key") String apiKey/*,
-			@Query("page") int page*/
+			@Query("api_key") String apiKey,
+			@Query("page") int page
 	);
 }
