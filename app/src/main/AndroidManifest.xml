@@ -27,7 +27,14 @@
         </activity>
 
         <!-- Detail Activity -->
-
+        <activity
+            android:name=".view.ui.DetailActivity"
+            android:label="Under Construction"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".view.ui.MainActivity"/>
+        </activity>
 
     </application>
 

@@ -7,4 +7,56 @@
     <dimen name="grid_list_item_top_margin">6dp</dimen>
 
     <integer name="grid_columns">2</integer>
+
+    <integer name="no_of_rating_stars">5</integer>
+
+    <dimen name="review_content_max_size">12sp</dimen>
+
+    <dimen name="detail_app_bar_height">280dp</dimen>
+
+    <dimen name="collapsing_bar_title_margin_start">48dp</dimen>
+
+    <dimen name="collapsing_bar_title_margin_end">64dp</dimen>
+
+    <dimen name="fab_width">56dp</dimen>
+
+    <dimen name="fab_height">56dp</dimen>
+
+    <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="detail_poster_container_margin">12dp</dimen>
+
+    <dimen name="detail_iv_poster_width">120dp</dimen>
+
+    <dimen name="detail_iv_poster_height">180dp</dimen>
+
+    <dimen name="detail_frag_title_width">160dp</dimen>
+
+    <dimen name="detail_frag_title_height">40dp</dimen>
+
+    <dimen name="detail_frag_title_top_margin">8dp</dimen>
+
+    <dimen name="detail_frag_title_left_margin">136dp</dimen>
+
+    <dimen name="detail_frag_title_text_size">15sp</dimen>
+
+    <dimen name="tv_rating_count_width">96dp</dimen>
+
+    <dimen name="tv_rating_count_height">16dp</dimen>
+
+    <dimen name="tv_movie_overview_height">120dp</dimen>
+
+    <dimen name="tv_movie_overview_left_margin">8dp</dimen>
+
+    <dimen name="tv_movie_overview_right_margin">8dp</dimen>
+
+    <dimen name="tv_movie_overview_top_margin">16dp</dimen>
+
+    <dimen name="tv_review_label_top_margin">24dp</dimen>
+
+    <dimen name="reviews_container_height">180dp</dimen>
+
+    <dimen name="reviews_container_top_margin">8dp</dimen>
+
+    <dimen name="tv_empty_state_text_size">24sp</dimen>
 </resources>

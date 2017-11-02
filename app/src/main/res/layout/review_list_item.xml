@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Reviews List Item Layout -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:background="@android:color/background_dark">
+
+    <!-- Review Content -->
+    <TextView
+        android:id="@+id/movie_review_content_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autoSizeMaxTextSize="@dimen/review_content_max_size"
+        android:ellipsize="end"
+        android:fontFamily="casual"
+        android:maxLines="4"
+        android:textColor="@android:color/white"
+        tools:targetApi="o"
+        tools:text="Content"/>
+
+    <!-- Review Author [ Right-aligned ] -->
+    <TextView
+        android:id="@+id/movie_review_author_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="cursive"
+        android:gravity="end"
+        android:textColor="@android:color/white"
+        tools:text="Author"/>
+
+</LinearLayout>

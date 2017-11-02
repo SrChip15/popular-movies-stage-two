@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/detail_fragment_background"
+    tools:context=".view.ui.DetailActivity">
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/movie_title"
+        android:layout_width="@dimen/detail_frag_title_width"
+        android:layout_height="@dimen/detail_frag_title_height"
+        android:layout_marginLeft="@dimen/detail_frag_title_left_margin"
+        android:layout_marginStart="@dimen/detail_frag_title_left_margin"
+        android:layout_marginTop="@dimen/detail_frag_title_top_margin"
+        android:autoSizeTextType="uniform"
+        android:fitsSystemWindows="true"
+        android:fontFamily="sans-serif-smallcaps"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/detail_frag_title_text_size"
+        android:textStyle="bold"
+        tools:targetApi="o"
+        tools:text="Movie Title"/>
+
+    <!-- Release Date -->
+    <TextView
+        android:id="@+id/movie_release_date"
+        style="?android:textAppearanceSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/movie_title"
+        android:layout_alignStart="@id/movie_title"
+        android:layout_below="@id/movie_title"
+        android:textColor="@android:color/white"
+        tools:text="Release date"/>
+
+    <!-- Ratings -->
+    <LinearLayout
+        android:id="@+id/rating_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/movie_release_date"
+        android:layout_alignStart="@id/movie_release_date"
+        android:layout_below="@id/movie_release_date"
+        android:orientation="horizontal">
+
+        <!-- Vote Average -->
+        <RatingBar
+            android:id="@+id/rating_bar"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:isIndicator="true"
+            android:numStars="@integer/no_of_rating_stars"
+            android:theme="@style/rating_bar"
+            tools:rating="3"/>
+
+        <!-- Vote Count -->
+        <TextView
+            android:id="@+id/rating_count"
+            android:layout_width="@dimen/tv_rating_count_width"
+            android:layout_height="@dimen/tv_rating_count_height"
+            android:autoSizeTextType="uniform"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            tools:targetApi="o"
+            tools:text="1,000 Ratings"/>
+
+    </LinearLayout>
+
+    <!-- Overview -->
+    <TextView
+        android:id="@+id/movie_overview"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tv_movie_overview_height"
+        android:layout_below="@+id/rating_container"
+        android:layout_marginEnd="@dimen/tv_movie_overview_right_margin"
+        android:layout_marginLeft="@dimen/tv_movie_overview_left_margin"
+        android:layout_marginRight="@dimen/tv_movie_overview_right_margin"
+        android:layout_marginStart="@dimen/tv_movie_overview_left_margin"
+        android:layout_marginTop="@dimen/tv_movie_overview_top_margin"
+        android:autoSizeTextType="uniform"
+        android:fontFamily="sans-serif-condensed"
+        android:textColor="@android:color/white"
+        tools:targetApi="o"
+        tools:text=" I am a movie review "/>
+
+    <!-- Review Label -->
+    <TextView
+        android:id="@+id/review_label_tv"
+        style="?android:textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@id/movie_overview"
+        android:layout_alignLeft="@id/movie_overview"
+        android:layout_alignRight="@id/movie_overview"
+        android:layout_alignStart="@id/movie_overview"
+        android:layout_below="@id/movie_overview"
+        android:layout_marginTop="@dimen/tv_review_label_top_margin"
+        android:text="@string/review_label"
+        android:textColor="@android:color/white"/>
+
+    <!-- Reviews Container -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/reviews_container_height"
+        android:layout_alignEnd="@id/review_label_tv"
+        android:layout_alignLeft="@id/review_label_tv"
+        android:layout_alignRight="@id/review_label_tv"
+        android:layout_alignStart="@id/review_label_tv"
+        android:layout_below="@id/review_label_tv"
+        android:layout_marginTop="@dimen/reviews_container_top_margin">
+
+        <!-- RecyclerView of Movie Reviews -->
+        <com.example.android.flixt.view.custom.AppRecyclerView
+            android:id="@+id/reviews_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical"/>
+
+        <!-- Empty TextView when there is no data for the query from the API -->
+        <TextView
+            android:id="@+id/review_empty_text_view"
+            style="?android:textAppearanceMedium"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/tv_empty_state_text_size"
+            tools:text="@string/no_reviews"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>
+
+

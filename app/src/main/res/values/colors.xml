@@ -2,5 +2,7 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#b2ff59</color>
+    <color name="detail_fragment_background">#1b1b1b</color>
+    <color name="rating_star_color">#FFff00</color>
 </resources>

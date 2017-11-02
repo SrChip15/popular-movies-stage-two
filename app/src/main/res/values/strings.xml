@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">FlixT</string>
+
     <string name="no_movies">No Movies To Display</string>
+
+    <string name="backdrop_img_cd">Backdrop movie poster image</string>
+
+    <string name="review_label">Reviews</string>
+
+    <string name="no_reviews">Be the first to review this movie!</string>
+
+    <string name="vote_count_label">%1$d Ratings</string>
 </resources>

@@ -1,6 +1,7 @@
 package com.example.android.flixt.view.ui;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -133,10 +134,10 @@ public class GridFragment
 
 	@Override
 	public void onPosterClick(Movie movie) {
-	    /*Intent detailActivityIntent = new Intent(getActivity(), MovieDetailActivity.class);
+	    Intent detailActivityIntent = new Intent(getActivity(), DetailActivity.class);
 	    Log.d(TAG, "" + movie.getTitle() + " movie clicked!");
         detailActivityIntent.putExtra("Movie", movie);
-        startActivity(detailActivityIntent);*/
+        startActivity(detailActivityIntent);
 	}
 
 	@Override

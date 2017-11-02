@@ -2,7 +2,6 @@ package com.example.android.flixt.view.adapter;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,13 +9,14 @@ import android.view.ViewGroup;
 
 import com.example.android.flixt.R;
 import com.example.android.flixt.service.model.Movie;
+import com.example.android.flixt.view.custom.AppRecyclerView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class GridAdapter extends RecyclerView.Adapter<GridViewHolder> {
+public class GridAdapter extends AppRecyclerView.Adapter<GridViewHolder> {
 
 	private static final String POSTER_IMAGE_BASE_URL = "http://image.tmdb.org/t/p/";
 	private static final String POSTER_IMAGE_SIZE = "w780";
