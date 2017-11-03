@@ -54,6 +54,8 @@ public class GridLoader extends AsyncTaskLoader<GridData> {
 						data.setMovies(rootResponse.getMovies());
 						data.setTotalPages(rootResponse.getTotalPages());
 					}
+				} else {
+					Log.d("GridLoader", "Request failed " + response.message());
 				}
 			} catch (IOException ioe) {
 				Log.d("GridLoader", "IOException has occurred while fetching movies from API");

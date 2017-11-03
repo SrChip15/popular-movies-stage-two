@@ -10,6 +10,7 @@ import android.support.v4.content.Loader;
 import android.support.v7.widget.GridLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
@@ -20,8 +21,8 @@ import com.example.android.flixt.presenter.GridLoader;
 import com.example.android.flixt.service.model.GridData;
 import com.example.android.flixt.service.model.Movie;
 import com.example.android.flixt.view.adapter.GridAdapter;
-import com.example.android.flixt.view.callback.GridScrollListener;
 import com.example.android.flixt.view.custom.AppRecyclerView;
+import com.paginate.Paginate;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,7 +31,7 @@ import butterknife.ButterKnife;
 /** A simple {@link Fragment} subclass. */
 public class GridFragment
 		extends Fragment
-		implements GridAdapter.ListItemClickListener, LoaderManager.LoaderCallbacks<GridData> {
+		implements GridAdapter.ListItemClickListener, LoaderManager.LoaderCallbacks<GridData>, Paginate.Callbacks {
 
 	private static final int MOVIE_GRID_LOADER_ID = 11;
 	@BindView(R.id.recycler_view)
@@ -40,14 +41,12 @@ public class GridFragment
 	@BindView(R.id.progress_bar)
 	ProgressBar mLoadingProgressBar;
 
-	private boolean mIsLoading = false; // Flag for paginated scroll listener
-	private boolean mIsLastPage = false;
-	private int mTotalPages; // Flag for paginated scroll listener
-	private int mCurrentPage; // Store current movie page that is being parsed
+	private boolean mLoading = false; // Flag for paginated scroll listener
+	private boolean mHasNextPage = false;
+	private int mCurrentPage = 1; // Store current movie page that is being parsed
 	private GridAdapter mAdapter;
 
 	private static final String CURRENT_PAGE = "currentPage";
-	private static final String LAST_PAGE = "lastPage";
 	private static final String TAG = GridFragment.class.getSimpleName();
 
 	public GridFragment() {
@@ -58,6 +57,10 @@ public class GridFragment
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setRetainInstance(true);
+		setHasOptionsMenu(true);
+		if (savedInstanceState != null) {
+			mCurrentPage = savedInstanceState.getInt(CURRENT_PAGE);
+		}
 	}
 
 	@Override
@@ -66,28 +69,27 @@ public class GridFragment
 		ButterKnife.bind(this, movieGridView);
 		setupPosterGridView();
 
-		// Get info from bundle
-		if (savedInstanceState != null) {
-			mIsLastPage = savedInstanceState.getBoolean(LAST_PAGE);
-			mCurrentPage = savedInstanceState.getInt(CURRENT_PAGE);
-			// TODO Show scrolled movies too!
-		} else {
-			mCurrentPage = 1; // First run
-		}
-
-		Log.d(TAG + " onCreateView()", "CURRENT PAGE = " + mCurrentPage + "| TOTAL PAGES = " + mTotalPages);
 		Log.d(TAG + " onCreateView()", "Loader triggered to fetch CURRENT PAGE = " + mCurrentPage);
-		getActivity().getSupportLoaderManager().initLoader(MOVIE_GRID_LOADER_ID, null, this);
 
+		getActivity().getSupportLoaderManager().initLoader(MOVIE_GRID_LOADER_ID, null, this);
 		return movieGridView;
 	}
 
 	@Override
 	public void onSaveInstanceState(Bundle outState) {
 		outState.putInt(CURRENT_PAGE, mCurrentPage);
-		outState.putBoolean(LAST_PAGE, mIsLastPage);
-		// TODO Save to database to show old
 		super.onSaveInstanceState(outState);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			case R.id.action_top_rated:
+				break;
+			case R.id.action_popular:
+				break;
+		}
+		return super.onOptionsItemSelected(item);
 	}
 
 	private void setupPosterGridView() {
@@ -102,30 +104,13 @@ public class GridFragment
 
 		mLoadingProgressBar.setIndeterminate(true);
 		mRecyclerView.setEmptyView(mEmptyStateTextView);
-
-		mRecyclerView.addOnScrollListener(new GridScrollListener(layoutManager) {
-			@Override
-			protected void loadMoreItems() {
-				mIsLoading = true;
-				mCurrentPage++;
-				loadNextPage();
-			}
-
-			@Override
-			public int getTotalPageCount() {
-				return mTotalPages;
-			}
-
-			@Override
-			public boolean isLastPage() {
-				return mIsLastPage;
-			}
-
-			@Override
-			public boolean isLoading() {
-				return mIsLoading;
-			}
-		});
+		@SuppressWarnings("unused")
+		Paginate mPaginate = Paginate.with(mRecyclerView, this)
+				.setLoadingTriggerThreshold(1)
+				.addLoadingListItem(true)
+				.setLoadingListItemCreator(null)
+				.setLoadingListItemSpanSizeLookup(() -> getResources().getInteger(R.integer.grid_columns))
+				.build();
 	}
 
 	private void loadNextPage() {
@@ -134,10 +119,10 @@ public class GridFragment
 
 	@Override
 	public void onPosterClick(Movie movie) {
-	    Intent detailActivityIntent = new Intent(getActivity(), DetailActivity.class);
-	    Log.d(TAG, "" + movie.getTitle() + " movie clicked!");
-        detailActivityIntent.putExtra("Movie", movie);
-        startActivity(detailActivityIntent);
+		Intent detailActivityIntent = new Intent(getActivity(), DetailActivity.class);
+		Log.d(TAG, "" + movie.getTitle() + " movie clicked!");
+		detailActivityIntent.putExtra("Movie", movie);
+		startActivity(detailActivityIntent);
 	}
 
 	@Override
@@ -148,23 +133,39 @@ public class GridFragment
 
 	@Override
 	public void onLoadFinished(Loader<GridData> loader, GridData data) {
-		// Update adapter
-		mAdapter.addMovies(data.getMovies());
 		Log.d(TAG, "Size of adapter list = " + mAdapter.getItemCount());
-		mTotalPages = data.getTotalPages();
+		Log.d(TAG + " onLoadFinished()", "CURRENT PAGE = " + mCurrentPage + "| TOTAL PAGES = " + data.getTotalPages());
 
-		Log.d(TAG + " onLoadFinished()", "Total Pages = " + data.getTotalPages());
-		Log.d(TAG + " onLoadFinished()", "CURRENT PAGE = " + mCurrentPage + "| TOTAL PAGES = " + mTotalPages);
-
+		mAdapter.addMovies(data.getMovies());
+		mLoading = false;
+		mHasNextPage = data.getTotalPages() >= mCurrentPage;
 		mLoadingProgressBar.setVisibility(View.GONE);
-
-		if (mCurrentPage != 1) mIsLoading = false;
-		if (mCurrentPage == mTotalPages) mIsLastPage = true;
+		/*if (mCurrentPage != 1) mLoading = false;
+		if (mCurrentPage == mTotalPages) mIsLastPage = true;*/
 	}
 
 	@Override
 	public void onLoaderReset(Loader<GridData> loader) {
 		mAdapter.addMovies(null);
-		mTotalPages = 0;
+	}
+
+	@Override
+	public void onLoadMore() {
+		mLoading = true;
+
+		if (mHasNextPage) {
+			mCurrentPage++;
+			loadNextPage();
+		}
+	}
+
+	@Override
+	public boolean isLoading() {
+		return mLoading;
+	}
+
+	@Override
+	public boolean hasLoadedAllItems() {
+		return !mHasNextPage;
 	}
 }

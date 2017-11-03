@@ -55,4 +55,6 @@ dependencies {
 
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.google.dagger:dagger-compiler:' + rootProject.dagger
+
+    compile 'com.github.markomilos:paginate:0.5.1'
 }

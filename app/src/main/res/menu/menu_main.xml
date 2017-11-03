@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.MainActivity">
+
+    <item
+        android:id="@+id/action_sort"
+        android:icon="@drawable/ic_sort"
+        android:title="@string/action_sort_by"
+        app:showAsAction="ifRoom">
+
+        <!-- Sort movies menu item -->
+        <menu>
+
+            <!-- Sort by top rated movies -->
+            <item
+                android:id="@+id/action_top_rated"
+                android:orderInCategory="1"
+                android:title="@string/action_top_rated"
+                app:showAsAction="never"/>
+
+            <!-- Sort by popular movies -->
+            <item
+                android:id="@+id/action_popular"
+                android:orderInCategory="2"
+                android:title="@string/action_popular"
+                app:showAsAction="never"/>
+        </menu>
+
+    </item>
+
+</menu>

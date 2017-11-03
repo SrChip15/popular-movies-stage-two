@@ -10,4 +10,13 @@
     <string name="no_reviews">Be the first to review this movie!</string>
 
     <string name="vote_count_label">%1$d Ratings</string>
+
+    <!-- Menu action to display top rated movies only -->
+    <string name="action_top_rated">Top Rated Movies</string>
+
+    <!-- Menu action to display most popular movies  -->
+    <string name="action_popular">Popular Movies</string>
+
+    <!-- Title for sort menu option item -->
+    <string name="action_sort_by">Sort By</string>
 </resources>

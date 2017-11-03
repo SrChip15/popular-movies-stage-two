@@ -21,7 +21,7 @@ public class GridAdapter extends AppRecyclerView.Adapter<GridViewHolder> {
 	private static final String POSTER_IMAGE_BASE_URL = "http://image.tmdb.org/t/p/";
 	private static final String POSTER_IMAGE_SIZE = "w780";
 	private final ListItemClickListener mItemClickListener;
-	private List<Movie> mListOfMovies = new ArrayList<>();
+	private List<Movie> mListOfMovies;
 	private Context mContext;
 
 	/**
@@ -31,6 +31,7 @@ public class GridAdapter extends AppRecyclerView.Adapter<GridViewHolder> {
 		// Initialize data set
 		mContext = context;
 		mItemClickListener = itemClickListener;
+		mListOfMovies = new ArrayList<>();
 	}
 
 	@Override
@@ -55,6 +56,8 @@ public class GridAdapter extends AppRecyclerView.Adapter<GridViewHolder> {
 				Picasso.with(mContext)
 						.load(imageUrl)
 						.into(holder.posterImageView);
+			} else {
+				holder.posterImageView.setImageResource(R.drawable.ic_movie);
 			}
 		}
 	}
@@ -64,12 +67,18 @@ public class GridAdapter extends AppRecyclerView.Adapter<GridViewHolder> {
 		return mListOfMovies != null ? mListOfMovies.size() : 0;
 	}
 
-	public synchronized void addMovies(@Nullable List<Movie> listOfMovies) {
+	public void addMovies(@Nullable List<Movie> listOfMovies) {
 		if (listOfMovies != null) {
 			mListOfMovies.addAll(listOfMovies);
 			notifyDataSetChanged();
 		} else {
 			mListOfMovies = null;
+		}
+	}
+
+	private void clear() {
+		while (mListOfMovies.size() > 0) {
+			mListOfMovies.remove(0);
 		}
 	}
 
