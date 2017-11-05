@@ -17,10 +17,10 @@ public class MainActivity extends AppCompatActivity {
 
 		// Call GridFragment
 		if (savedInstanceState == null) {
-			FragmentManager fragmentManager = getSupportFragmentManager();
-			GridFragment gridFragment = new GridFragment();
-			fragmentManager.beginTransaction()
-					.replace(R.id._grid_fragment_container, gridFragment)
+			FragmentManager fragMgr = getSupportFragmentManager();
+			GridFragment frag = new GridFragment();
+			fragMgr.beginTransaction()
+					.add(R.id.grid_fragment_container, frag)
 					.commit();
 		}
 	}

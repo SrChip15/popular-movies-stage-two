@@ -69,17 +69,23 @@ public class GridAdapter extends AppRecyclerView.Adapter<GridViewHolder> {
 
 	public void addMovies(@Nullable List<Movie> listOfMovies) {
 		if (listOfMovies != null) {
-			mListOfMovies.addAll(listOfMovies);
-			notifyDataSetChanged();
+			int startPosition = mListOfMovies.size() - 1;
+			int itemCount = 0;
+			for (Movie movie : listOfMovies) {
+				if (movie.getPosterPath() != null) {
+					mListOfMovies.add(movie);
+					itemCount++;
+				}
+			}
+			notifyItemRangeInserted(startPosition, itemCount);
 		} else {
 			mListOfMovies = null;
 		}
 	}
 
-	private void clear() {
-		while (mListOfMovies.size() > 0) {
-			mListOfMovies.remove(0);
-		}
+	public void clear() {
+		mListOfMovies.clear();
+		notifyDataSetChanged();
 	}
 
 	public interface ListItemClickListener {

@@ -13,16 +13,22 @@ import com.example.android.flixt.service.repository.TmdbApiService;
 
 import java.io.IOException;
 
+import retrofit2.Call;
 import retrofit2.Response;
 
 public class GridLoader extends AsyncTaskLoader<GridData> {
 
 	private GridData mData;
-	private int currentPage;
+	private int mCurrentPage;
+	private int mSortBy;
 
-	public GridLoader(Context context, int currentPage) {
+	private static final int TOP_RATED_MODE = 22;
+	private static final int POPULAR_MODE = 33;
+
+	public GridLoader(Context context, int CurrentPage, int sortBy) {
 		super(context);
-		this.currentPage = currentPage;
+		mCurrentPage = CurrentPage;
+		mSortBy = sortBy;
 		mData = new GridData();
 	}
 
@@ -47,7 +53,17 @@ public class GridLoader extends AsyncTaskLoader<GridData> {
 			TmdbApiService apiService = AppDataRepository.getInstance().getTmdbApiService();
 
 			try {
-				Response<DiscoverResponse> response = apiService.getMovies(PrivateApiKey.YOUR_API_KEY, currentPage).execute();
+				Call<DiscoverResponse> call = null;
+				if (mSortBy == TOP_RATED_MODE) {
+					call = apiService.getTopRatedMovies(PrivateApiKey.YOUR_API_KEY, mCurrentPage);
+				} else if (mSortBy == POPULAR_MODE) {
+					call = apiService.getPopularMovies(PrivateApiKey.YOUR_API_KEY, mCurrentPage);
+				} else {
+					call = apiService.getMovies(PrivateApiKey.YOUR_API_KEY, mCurrentPage);
+				}
+				String requestURL = call.request().url().toString();
+				Log.d("GridLoader", "Requested URL - " + requestURL);
+				Response<DiscoverResponse> response = call.execute();
 				if (response.isSuccessful()) {
 					DiscoverResponse rootResponse = response.body();
 					if (rootResponse != null) {
@@ -65,6 +81,7 @@ public class GridLoader extends AsyncTaskLoader<GridData> {
 			return data;
 		}
 	}
+
 
 	@Override
 	public void deliverResult(GridData data) {

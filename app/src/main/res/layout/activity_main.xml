@@ -9,7 +9,7 @@
 
     <!-- Populates GridFragment -->
     <FrameLayout
-        android:id="@+id/_grid_fragment_container"
+        android:id="@+id/grid_fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

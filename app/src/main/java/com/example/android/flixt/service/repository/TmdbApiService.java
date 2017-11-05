@@ -30,4 +30,16 @@ public interface TmdbApiService {
 			@Path("id") int movieId,
 			@Query("api_key") String apiKey
 	);
+
+	@GET("movie/top_rated")
+	Call<DiscoverResponse> getTopRatedMovies(
+			@Query("api_key") String apiKey,
+			@Query("page") int pageNumber
+	);
+
+	@GET("movie/popular")
+	Call<DiscoverResponse> getPopularMovies(
+			@Query("api_key") String apiKey,
+			@Query("page") int pageNumber
+	);
 }

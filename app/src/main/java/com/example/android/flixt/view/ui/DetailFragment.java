@@ -53,7 +53,7 @@ public class DetailFragment
 	private Movie mMovie;
 	private ReviewAdapter mReviewAdapter;
 	private static final String TAG = DetailFragment.class.getSimpleName();
-	private static final int REVIEWS_LOADER_ID = 22;
+	private static final int REVIEWS_LOADER_ID = 45;
 
 	public DetailFragment() {
 		// Required empty public constructor
