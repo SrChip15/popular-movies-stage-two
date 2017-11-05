@@ -31,8 +31,6 @@ ext {
     supportLibVersion = "26.1.0"
     espressoVersion = "2.2.2"
     archLifecycleVersion = "1.0.0-beta1"
-    archRoomVersion = "1.0.0-rc1"
-    archPagingVersion = "1.0.0-alpha2"
     butterKnife="8.8.1"
     retrofit="2.3.0"
     picasso="2.5.2"

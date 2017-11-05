@@ -25,7 +25,6 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     implementation 'com.android.support:support-v4:26.1.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
@@ -39,9 +38,6 @@ dependencies {
 
     // Room, Paging, LiveData and ViewModel
     compile 'android.arch.lifecycle:extensions:' + rootProject.archLifecycleVersion
-    compile 'android.arch.persistence.room:runtime:' + rootProject.archRoomVersion
-    compile 'android.arch.paging:runtime:' + rootProject.archPagingVersion
-    annotationProcessor 'android.arch.persistence.room:compiler:' + rootProject.archRoomVersion
     annotationProcessor 'android.arch.lifecycle:compiler:' + rootProject.archLifecycleVersion
 
     // Third-party dependencies

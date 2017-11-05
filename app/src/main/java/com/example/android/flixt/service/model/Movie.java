@@ -1,17 +1,13 @@
 package com.example.android.flixt.service.model;
 
-import android.arch.persistence.room.ColumnInfo;
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.Ignore;
-import android.arch.persistence.room.PrimaryKey;
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
 @SuppressWarnings("unused")
-@Entity(tableName = "movies")
 public class Movie implements Parcelable {
+
 	public static final Creator<Movie> CREATOR = new Creator<Movie>() {
 		@Override
 		public Movie createFromParcel(Parcel in) {
@@ -23,44 +19,30 @@ public class Movie implements Parcelable {
 			return new Movie[size];
 		}
 	};
-	private static final int FAVORITE = 1;
-	private static final int NOT_FAVORITE = 0;
+
 	@SerializedName("vote_count")
-	@ColumnInfo(name = "vote_count")
 	private Integer voteCount;
 	@SerializedName("id")
-	@PrimaryKey
-	@ColumnInfo(name = "movie_id")
 	private int id;
 	@SerializedName("video")
-	@Ignore
-	@SuppressWarnings("unused")
 	private Boolean video;
 	@SerializedName("vote_average")
-	@ColumnInfo(name = "vote_average")
 	private Double voteAverage;
 	@SerializedName("title")
 	private String title;
 	@SerializedName("popularity")
 	private Double popularity;
-	@ColumnInfo(name = "poster_path")
 	@SerializedName("poster_path")
 	private String posterPath;
 	@SerializedName("original_title")
-	@Ignore
 	private String originalTitle;
-	@ColumnInfo(name = "backdrop_path")
 	@SerializedName("backdrop_path")
 	private String backdropPath;
 	@SerializedName("overview")
 	private String overview;
-	@ColumnInfo(name = "release_date")
 	@SerializedName("release_date")
 	private String releaseDate;
-	@ColumnInfo(name = "is_movie_favorite")
-	private int userPref = NOT_FAVORITE;
 
-	@Ignore
 	public Movie(Parcel in) {
 		this.title = in.readString();
 		this.posterPath = in.readString();
@@ -72,11 +54,6 @@ public class Movie implements Parcelable {
 		this.voteAverage = in.readDouble();
 		this.voteCount = in.readInt();
 		this.popularity = in.readDouble();
-		this.userPref = in.readInt();
-	}
-
-	public Movie() {
-		// Empty constructor check
 	}
 
 	@Override
@@ -96,7 +73,6 @@ public class Movie implements Parcelable {
 		parcel.writeDouble(voteAverage);
 		parcel.writeInt(voteCount);
 		parcel.writeDouble(popularity);
-		parcel.writeInt(userPref);
 	}
 
 	public Integer getVoteCount() {
@@ -111,16 +87,8 @@ public class Movie implements Parcelable {
 		return id;
 	}
 
-	void setId(int id) {
+	public void setId(int id) {
 		this.id = id;
-	}
-
-	public int getUserPref() {
-		return userPref;
-	}
-
-	public void setUserPref(int userPref) {
-		this.userPref = userPref;
 	}
 
 	public Boolean getVideo() {
