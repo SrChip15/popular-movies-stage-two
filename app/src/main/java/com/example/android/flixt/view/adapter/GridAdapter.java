@@ -51,14 +51,10 @@ public class GridAdapter extends AppRecyclerView.Adapter<GridViewHolder> {
 		if (mListOfMovies != null && !(mListOfMovies.isEmpty())) {
 			Movie currentMovie = mListOfMovies.get(position);
 			String posterPath = currentMovie.getPosterPath();
-			if (posterPath != null && !(TextUtils.isEmpty(posterPath))) {
-				String imageUrl = POSTER_IMAGE_BASE_URL + POSTER_IMAGE_SIZE + posterPath;
-				Picasso.with(mContext)
-						.load(imageUrl)
-						.into(holder.posterImageView);
-			} else {
-				holder.posterImageView.setImageResource(R.drawable.ic_movie);
-			}
+			String imageUrl = POSTER_IMAGE_BASE_URL + POSTER_IMAGE_SIZE + posterPath;
+			Picasso.with(mContext)
+					.load(imageUrl)
+					.into(holder.posterImageView);
 		}
 	}
 
@@ -72,7 +68,8 @@ public class GridAdapter extends AppRecyclerView.Adapter<GridViewHolder> {
 			int startPosition = mListOfMovies.size() - 1;
 			int itemCount = 0;
 			for (Movie movie : listOfMovies) {
-				if (movie.getPosterPath() != null) {
+				if (movie.getPosterPath() != null && !(TextUtils.isEmpty(movie.getPosterPath()))) {
+					// Add movies to data set ONLY if it has a valid poster
 					mListOfMovies.add(movie);
 					itemCount++;
 				}
