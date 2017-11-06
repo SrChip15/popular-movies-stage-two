@@ -76,7 +76,7 @@ public class MovieProvider extends ContentProvider {
 			default:
 				throw new IllegalArgumentException(getContext().getString(R.string.unsupported_query) + uri);
 		}
-
+		cursor.setNotificationUri(getContext().getContentResolver(), uri);
 		return cursor;
 	}
 
@@ -115,7 +115,7 @@ public class MovieProvider extends ContentProvider {
 				return numRecordsDeleted;
 			case MOVIE_ID:
 				selection = MovieEntry.ID + " = ? ";
-				selectionArgs = new String[] {String.valueOf(ContentUris.parseId(uri))};
+				selectionArgs = new String[]{ String.valueOf(ContentUris.parseId(uri)) };
 				numRecordsDeleted = db.delete(MovieEntry.TABLE_NAME, selection, selectionArgs);
 				if (numRecordsDeleted != 0) {
 					getContext().getContentResolver().notifyChange(uri, null);
@@ -136,7 +136,7 @@ public class MovieProvider extends ContentProvider {
 				return updateMovie(uri, values, selection, selectionArgs);
 			case MOVIE_ID:
 				selection = MovieEntry.ID + " = ? ";
-				selectionArgs = new String[] {String.valueOf(ContentUris.parseId(uri))};
+				selectionArgs = new String[]{ String.valueOf(ContentUris.parseId(uri)) };
 				return updateMovie(uri, values, selection, selectionArgs);
 			default:
 				throw new IllegalArgumentException(getContext().getString(R.string.unsupported_update) + uri);
@@ -151,6 +151,7 @@ public class MovieProvider extends ContentProvider {
 			Log.e(TAG, getContext().getString(R.string.insert_failed) + uri);
 			return null;
 		}
+		getContext().getContentResolver().notifyChange(uri, null);
 		return ContentUris.withAppendedId(uri, rowID);
 	}
 

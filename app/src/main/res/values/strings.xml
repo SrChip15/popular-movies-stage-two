@@ -23,8 +23,17 @@
     <string name="no_title">Movie title cannot be null</string>
 
     <string name="unsupported_insertion">Insertion is not supported for</string>
+
     <string name="insert_failed">Failed to insert row for</string>
+
     <string name="unsupported_deletion">Deletion is not supported for:</string>
+
     <string name="unsupported_update">Update is not supported for</string>
+
     <string name="unsupported_query">Error: Unknown URI</string>
+
+    <string name="nav_fav_title">Favorite</string>
+
+    <string name="nav_exp_title">Explore</string>
+    <string name="fav_frag_title">Favorites</string>
 </resources>

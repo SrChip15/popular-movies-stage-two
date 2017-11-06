@@ -20,7 +20,6 @@ public final class GridViewHolder extends RecyclerView.ViewHolder implements OnC
 
 	@BindView(R.id.list_item_image_view)
 	PropPosterImageView posterImageView;
-
 	private List<Movie> movies;
 	private ListItemClickListener listItemClickListener;
 
@@ -31,6 +30,11 @@ public final class GridViewHolder extends RecyclerView.ViewHolder implements OnC
 		this.listItemClickListener = listItemClickListener;
 		itemView.setOnClickListener(this);
 		itemView.setDrawingCacheEnabled(true);
+	}
+
+	public GridViewHolder(View itemView) {
+		super(itemView);
+		ButterKnife.bind(this, itemView);
 	}
 
 	@Override

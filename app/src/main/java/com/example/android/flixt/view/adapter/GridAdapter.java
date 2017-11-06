@@ -20,6 +20,7 @@ public class GridAdapter extends AppRecyclerView.Adapter<GridViewHolder> {
 
 	private static final String POSTER_IMAGE_BASE_URL = "http://image.tmdb.org/t/p/";
 	private static final String POSTER_IMAGE_SIZE = "w780";
+
 	private final ListItemClickListener mItemClickListener;
 	private List<Movie> mListOfMovies;
 	private Context mContext;

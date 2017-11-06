@@ -59,4 +59,6 @@
     <dimen name="reviews_container_top_margin">8dp</dimen>
 
     <dimen name="tv_empty_state_text_size">24sp</dimen>
+
+    <dimen name="drawer_list_item_margin">12dp</dimen>
 </resources>
