@@ -5,6 +5,7 @@ android {
     defaultConfig {
         applicationId "com.example.android.flixt"
         minSdkVersion 16
+        //noinspection OldTargetApi
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -24,8 +25,6 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.android.support:support-v4:26.1.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
@@ -35,10 +34,6 @@ dependencies {
     compile 'com.android.support:cardview-v7:' + rootProject.supportLibVersion
     compile 'com.android.support:support-v4:' + rootProject.supportLibVersion
     compile 'com.android.support:design:' + rootProject.supportLibVersion
-
-    // Room, Paging, LiveData and ViewModel
-    compile 'android.arch.lifecycle:extensions:' + rootProject.archLifecycleVersion
-    annotationProcessor 'android.arch.lifecycle:compiler:' + rootProject.archLifecycleVersion
 
     // Third-party dependencies
     compile 'com.jakewharton:butterknife:' + rootProject.butterKnife
@@ -53,5 +48,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.google.dagger:dagger-compiler:' + rootProject.dagger
 
-    compile 'com.github.markomilos:paginate:0.5.1'
+    compile 'com.github.markomilos:paginate:' + rootProject.paginate
 }

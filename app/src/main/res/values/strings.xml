@@ -41,4 +41,7 @@
 
     <!-- Title for the activity when favorites fragment is being displayed -->
     <string name="fav_frag_title">Favorites</string>
+
+    <!-- Text that is displayed when there is no active internet connection -->
+    <string name="no_video_trailer">Video trailer currently unavailable!</string>
 </resources>

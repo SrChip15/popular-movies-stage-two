@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v7.widget.LinearLayoutManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,8 +51,9 @@ public class DetailFragment
 	TextView mEmptyStateTextView;
 	private Movie mMovie;
 	private ReviewAdapter mReviewAdapter;
-	private static final String TAG = DetailFragment.class.getSimpleName();
+
 	private static final int REVIEWS_LOADER_ID = 45;
+	private static final String MOVIE_KEY = "movie";
 
 	public DetailFragment() {
 		// Required empty public constructor
@@ -68,7 +68,7 @@ public class DetailFragment
 
 		// Get passed-in movie object
 		Intent mIntent = getActivity().getIntent();
-		mMovie = mIntent.getParcelableExtra("Movie");
+		mMovie = mIntent.getParcelableExtra(MOVIE_KEY);
 
 		// Setup views
 		setupReleaseDate(mMovie);
@@ -124,7 +124,6 @@ public class DetailFragment
 			mEmptyStateTextView.setText(getString(R.string.no_reviews));
 		}
 		mReviewAdapter.setReviews(data);
-		Log.d(TAG, "No of Reviews = " + data.size());
 	}
 
 	@Override

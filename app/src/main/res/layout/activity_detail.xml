@@ -7,7 +7,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/background_light"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    tools:context=".view.ui.DetailActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar_layout"
@@ -21,11 +22,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
+            android:minHeight="?attr/actionBarSize"
             app:contentScrim="?attr/colorPrimary"
             app:expandedTitleMarginEnd="@dimen/collapsing_bar_title_margin_end"
             app:expandedTitleMarginStart="@dimen/collapsing_bar_title_margin_start"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
+            <!-- Edge to edge backdrop image of the movie -->
             <ImageView
                 android:id="@+id/movie_backdrop"
                 android:layout_width="match_parent"
@@ -47,6 +50,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
+    <!-- Detail fragment is displayed within this view component -->
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/nested_scroll_view"
         android:layout_width="match_parent"
@@ -61,6 +65,7 @@
 
     </android.support.v4.widget.NestedScrollView>
 
+    <!-- Like or dislike button that adds/removes the movie to/from favorites (stored in local DB) -->
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fav_fab"
         android:layout_width="@dimen/fab_width"
@@ -71,6 +76,7 @@
         app:layout_anchor="@id/app_bar_layout"
         app:layout_anchorGravity="bottom|right|end"/>
 
+    <!-- Suspended movie poster image that always plays movie trailer upon touching it -->
     <RelativeLayout
         android:id="@+id/poster_container"
         android:layout_width="wrap_content"
@@ -81,13 +87,14 @@
         app:layout_anchorGravity="bottom|left|start"
         tools:ignore="KeyboardInaccessibleWidget">
 
+        <!-- Movie poster -->
         <ImageView
             android:id="@+id/movie_poster_iv"
             android:layout_width="@dimen/detail_iv_poster_width"
             android:layout_height="@dimen/detail_iv_poster_height"
-            tools:ignore="ContentDescription"
-            tools:src="@drawable/minions_780_poster"/>
+            tools:ignore="ContentDescription"/>
 
+        <!-- Play circle indicating movie trailer is available -->
         <ImageView
             android:id="@+id/poster_play_iv"
             android:layout_width="wrap_content"

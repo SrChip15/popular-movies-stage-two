@@ -2,7 +2,6 @@ package com.example.android.flixt.view.adapter;
 
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -47,7 +46,6 @@ public final class ReviewViewHolder extends RecyclerView.ViewHolder implements V
 	public void onClick(View view) {
 		int itemIndex = getAdapterPosition();
 		Uri uri = Uri.parse(reviews.get(itemIndex).getUrl());
-		Log.d("ReviewAdapter", "Review URL - " + uri.toString());
 		listItemClickListener.onItemClick(uri);
 	}
 }

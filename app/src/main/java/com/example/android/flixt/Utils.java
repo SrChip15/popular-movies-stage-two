@@ -20,7 +20,7 @@ public final class Utils {
 		try {
 			srcDate = srcFormat.parse(releaseDate);
 		} catch (ParseException pe) {
-			Log.d(TAG, "Text date parse exception occurred for " + releaseDate);
+			Log.e(TAG, "Text date parse exception occurred for " + releaseDate);
 			pe.printStackTrace();
 			return null;
 		}

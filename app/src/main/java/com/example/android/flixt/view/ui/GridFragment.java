@@ -8,7 +8,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v7.widget.GridLayoutManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -45,7 +44,7 @@ public class GridFragment
 	private Integer mActiveLoader;
 
 	private static final String CURRENT_PAGE = "currentPage";
-	private static final String TAG = GridFragment.class.getSimpleName();
+	private static final String MOVIE_KEY = "movie";
 	private static final int MOVIE_GRID_LOADER_ID = 11;
 	private static final int TOP_RATED_LOADER_ID = 22;
 	private static final int POPULAR_LOADER_ID = 33;
@@ -71,8 +70,6 @@ public class GridFragment
 		View movieGridView = inflater.inflate(R.layout.grid_view, container, false);
 		ButterKnife.bind(this, movieGridView);
 		setupPosterGridView();
-
-		Log.d(TAG + " onCreateView()", "Loader triggered to fetch CURRENT PAGE = " + mCurrentPage);
 
 		if (savedInstanceState != null) {
 			getActivity().getSupportLoaderManager().initLoader(mActiveLoader, null, this);
@@ -119,11 +116,10 @@ public class GridFragment
 		int columns = getResources().getInteger(R.integer.grid_columns);
 		GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), columns);
 		mRecyclerView.setLayoutManager(layoutManager);
-
-		/*mLoadingProgressBar.setIndeterminate(true);*/
 		mRecyclerView.setEmptyView(mEmptyStateTextView);
+
 		@SuppressWarnings("unused")
-		Paginate mPaginate = Paginate.with(mRecyclerView, this)
+		Paginate paginate = Paginate.with(mRecyclerView, this)
 				.setLoadingTriggerThreshold(1)
 				.addLoadingListItem(true)
 				.setLoadingListItemCreator(null)
@@ -132,22 +128,18 @@ public class GridFragment
 	}
 
 	private void loadNextPage() {
-		Log.d(TAG, "loadMore() callback just called loadNextPage()");
 		getActivity().getSupportLoaderManager().restartLoader(mActiveLoader, null, this);
 	}
 
 	@Override
 	public void onPosterClick(Movie movie) {
-		Log.d(TAG, "" + movie.getTitle() + " movie clicked!");
-
 		Intent detailActivityIntent = new Intent(getActivity(), DetailActivity.class);
-		detailActivityIntent.putExtra("Movie", movie);
+		detailActivityIntent.putExtra(MOVIE_KEY, movie);
 		startActivity(detailActivityIntent);
 	}
 
 	@Override
 	public Loader<GridData> onCreateLoader(int id, Bundle args) {
-		Log.d(TAG + " onCreateLoader()", "Loader triggered to fetch CURRENT PAGE = " + mCurrentPage);
 		switch (id) {
 			case TOP_RATED_LOADER_ID:
 				return new GridLoader(getActivity(), mCurrentPage, TOP_RATED_LOADER_ID /* Sort by identifier */);
@@ -160,9 +152,7 @@ public class GridFragment
 
 	@Override
 	public void onLoadFinished(Loader<GridData> loader, GridData data) {
-		Log.d(TAG + " onLoadFinished()", "CURRENT PAGE = " + mCurrentPage + "| TOTAL PAGES = " + data.getTotalPages());
 		int loaderId = loader.getId();
-
 		if (loaderId == TOP_RATED_LOADER_ID && mCurrentPage == 1) {
 			mAdapter.clear(); // Clears out adapter's discover movie data set
 			mRecyclerView.smoothScrollToPosition(0);
@@ -170,6 +160,9 @@ public class GridFragment
 		if (loaderId == POPULAR_LOADER_ID && mCurrentPage == 1) {
 			mAdapter.clear();
 			mRecyclerView.smoothScrollToPosition(0);
+		}
+		if (data.getMovies().isEmpty()) {
+			mEmptyStateTextView.setText(getString(R.string.no_movies));
 		}
 		mAdapter.addMovies(data.getMovies());
 		mLoading = false;

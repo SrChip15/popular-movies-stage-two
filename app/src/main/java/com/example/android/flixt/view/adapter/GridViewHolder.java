@@ -32,7 +32,7 @@ public final class GridViewHolder extends RecyclerView.ViewHolder implements OnC
 		itemView.setDrawingCacheEnabled(true);
 	}
 
-	public GridViewHolder(View itemView) {
+	GridViewHolder(View itemView) {
 		super(itemView);
 		ButterKnife.bind(this, itemView);
 	}
