@@ -36,6 +36,11 @@
                 android:value=".view.ui.MainActivity"/>
         </activity>
 
+        <provider
+            android:name=".data.MovieProvider"
+            android:authorities="com.example.android.flixt"
+            android:exported="false"/>
+
     </application>
 
 </manifest>

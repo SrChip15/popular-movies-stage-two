@@ -20,6 +20,11 @@
     <!-- Title for sort menu option item -->
     <string name="action_sort_by">Sort By</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="no_title">Movie title cannot be null</string>
+
+    <string name="unsupported_insertion">Insertion is not supported for</string>
+    <string name="insert_failed">Failed to insert row for</string>
+    <string name="unsupported_deletion">Deletion is not supported for:</string>
+    <string name="unsupported_update">Update is not supported for</string>
+    <string name="unsupported_query">Error: Unknown URI</string>
 </resources>
