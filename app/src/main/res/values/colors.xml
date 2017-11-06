@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Primary color theme for the app -->
     <color name="colorPrimary">#3F51B5</color>
+
+    <!-- Darker version of the primary color used for action bars and such -->
     <color name="colorPrimaryDark">#303F9F</color>
+
+    <!-- Accent color used in certain view components like floating action buttons -->
     <color name="colorAccent">#b2ff59</color>
+
+    <!-- Background color used in the detail view fragment -->
     <color name="detail_fragment_background">#1b1b1b</color>
+
+    <!-- Color used to fill the stars in the ratings bar indicating the voting average for the movie
+     in detail view-->
     <color name="rating_star_color">#FFff00</color>
 </resources>

@@ -120,6 +120,9 @@ public class DetailFragment
 
 	@Override
 	public void onLoadFinished(Loader<List<Review>> loader, List<Review> data) {
+		if (data.isEmpty()) {
+			mEmptyStateTextView.setText(getString(R.string.no_reviews));
+		}
 		mReviewAdapter.setReviews(data);
 		Log.d(TAG, "No of Reviews = " + data.size());
 	}

@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Resources to be used in landscape mode -->
 <resources>
+    <!-- Number of columns to be used in the recycler view's grid layout -->
     <integer name="grid_columns">3</integer>
 
+    <!-- Number of stars to be used in the ratings bar that is used to display the vote average of
+     the movie in detail view -->
     <integer name="no_of_rating_stars">5</integer>
 </resources>

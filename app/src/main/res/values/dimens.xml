@@ -1,64 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Grid margin dimensions that is used in the all grid views across the app -->
     <dimen name="grid_side_margin">3dp</dimen>
-
     <dimen name="grid_list_item_side_margin">3dp</dimen>
-
     <dimen name="grid_list_item_top_margin">6dp</dimen>
 
+    <!-- Number of columns to be used in the recycler view's grid layout -->
     <integer name="grid_columns">2</integer>
 
+    <!-- Number of stars to be used in the ratings bar that is used to display the vote average of
+     the movie in detail view -->
     <integer name="no_of_rating_stars">5</integer>
 
+    <!-- The maximum text size that is permissible to inflate the review content text view
+    using auto text size -->
     <dimen name="review_content_max_size">12sp</dimen>
 
+    <!-- Dimension specifications for the app bar and the collapsing bar -->
     <dimen name="detail_app_bar_height">280dp</dimen>
-
     <dimen name="collapsing_bar_title_margin_start">48dp</dimen>
-
     <dimen name="collapsing_bar_title_margin_end">64dp</dimen>
 
+    <!-- Floating action button dimensions and margin specifications -->
     <dimen name="fab_width">56dp</dimen>
-
     <dimen name="fab_height">56dp</dimen>
-
     <dimen name="fab_margin">16dp</dimen>
 
+    <!-- Dimension and margin specifications for the suspended movie posted image view in detail view -->
     <dimen name="detail_poster_container_margin">12dp</dimen>
-
     <dimen name="detail_iv_poster_width">120dp</dimen>
-
     <dimen name="detail_iv_poster_height">180dp</dimen>
 
+    <!-- Dimension and margin specifications for the movie title in the detail view-->
     <dimen name="detail_frag_title_width">160dp</dimen>
-
     <dimen name="detail_frag_title_height">40dp</dimen>
-
     <dimen name="detail_frag_title_top_margin">8dp</dimen>
-
     <dimen name="detail_frag_title_left_margin">136dp</dimen>
 
+    <!-- Text size for the movie title -->
     <dimen name="detail_frag_title_text_size">15sp</dimen>
 
+    <!-- Dimensions for the vote count text view of the movie in detail view -->
     <dimen name="tv_rating_count_width">96dp</dimen>
-
     <dimen name="tv_rating_count_height">16dp</dimen>
 
+    <!-- Dimension and margin specifications for the movie overview in detail view -->
     <dimen name="tv_movie_overview_height">120dp</dimen>
-
     <dimen name="tv_movie_overview_left_margin">8dp</dimen>
-
     <dimen name="tv_movie_overview_right_margin">8dp</dimen>
-
     <dimen name="tv_movie_overview_top_margin">16dp</dimen>
 
+    <!-- Head space for the review label text view marking the beginning of the
+    movie reviews in detail view -->
     <dimen name="tv_review_label_top_margin">24dp</dimen>
 
+    <!-- Dimension and margin specification for the movie reviews recycler view in detail view -->
     <dimen name="reviews_container_height">180dp</dimen>
-
     <dimen name="reviews_container_top_margin">8dp</dimen>
 
+    <!-- Size of the text that is used in empty state views across the app -->
     <dimen name="tv_empty_state_text_size">24sp</dimen>
 
+    <!-- Margin for each of the item in the navigation view of the drawer layout -->
     <dimen name="drawer_list_item_margin">12dp</dimen>
 </resources>

@@ -38,9 +38,6 @@ public class GridFragment
 	AppRecyclerView mRecyclerView;
 	@BindView(R.id.empty_text_view)
 	TextView mEmptyStateTextView;
-	/*@BindView(R.id.progress_bar)
-	ProgressBar mLoadingProgressBar;*/
-
 	private boolean mLoading = false; // Flag for paginated scroll listener
 	private boolean mHasNextPage = false;
 	private int mCurrentPage = 1; // Store current movie page that is being parsed

@@ -22,6 +22,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
+    <!-- Contents of fragment are displayed within this view component -->
     <FrameLayout
         android:id="@+id/grid_fragment_container"
         android:layout_width="match_parent"

@@ -1,14 +1,20 @@
 <resources>
+    <!-- Name of the app -->
     <string name="app_name">FlixT</string>
 
+    <!-- Text that is displayed when there are no movies to display -->
     <string name="no_movies">No Movies To Display</string>
 
+    <!-- Content description for backdrop image (Accessibility feature addition) -->
     <string name="backdrop_img_cd">Backdrop movie poster image</string>
 
+    <!-- Label for the reviews section -->
     <string name="review_label">Reviews</string>
 
-    <string name="no_reviews">Be the first to review this movie!</string>
+    <!-- Text that is displayed when there are no reviews for the movie in detail view -->
+    <string name="no_reviews">There are no reviews for this movie!</string>
 
+    <!-- Suffix to the vote count for the movie in detail view -->
     <string name="vote_count_label">%1$d Ratings</string>
 
     <!-- Menu action to display top rated movies only -->
@@ -20,20 +26,19 @@
     <!-- Title for sort menu option item -->
     <string name="action_sort_by">Sort By</string>
 
-    <string name="no_title">Movie title cannot be null</string>
-
+    <!-- Log statements -->
     <string name="unsupported_insertion">Insertion is not supported for</string>
-
     <string name="insert_failed">Failed to insert row for</string>
-
     <string name="unsupported_deletion">Deletion is not supported for:</string>
-
     <string name="unsupported_update">Update is not supported for</string>
-
     <string name="unsupported_query">Error: Unknown URI</string>
 
-    <string name="nav_fav_title">Favorite</string>
+    <!-- Title for the favorite menu item in the navigation drawer -->
+    <string name="nav_fav_title">Favorites</string>
 
+    <!-- Title for the explore menu item in the navigation drawer -->
     <string name="nav_exp_title">Explore</string>
+
+    <!-- Title for the activity when favorites fragment is being displayed -->
     <string name="fav_frag_title">Favorites</string>
 </resources>
