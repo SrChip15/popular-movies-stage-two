@@ -5,10 +5,10 @@ import android.content.Context;
 import android.support.v4.content.AsyncTaskLoader;
 import android.util.Log;
 
+import com.example.android.flixt.BuildConfig;
 import com.example.android.flixt.service.model.DiscoverResponse;
 import com.example.android.flixt.service.model.GridData;
 import com.example.android.flixt.service.repository.AppDataRepository;
-import com.example.android.flixt.service.repository.PrivateApiKey;
 import com.example.android.flixt.service.repository.TmdbApiService;
 
 import java.io.IOException;
@@ -24,6 +24,7 @@ public class GridLoader extends AsyncTaskLoader<GridData> {
 
 	private static final int TOP_RATED_MODE = 22;
 	private static final int POPULAR_MODE = 33;
+	private static final String API_KEY = BuildConfig.API_KEY;
 
 	public GridLoader(Context context, int CurrentPage, int sortBy) {
 		super(context);
@@ -53,13 +54,14 @@ public class GridLoader extends AsyncTaskLoader<GridData> {
 			TmdbApiService apiService = AppDataRepository.getInstance().getTmdbApiService();
 
 			try {
+				@SuppressWarnings("UnusedAssignment")
 				Call<DiscoverResponse> call = null;
 				if (mSortBy == TOP_RATED_MODE) {
-					call = apiService.getTopRatedMovies(PrivateApiKey.YOUR_API_KEY, mCurrentPage);
+					call = apiService.getTopRatedMovies(API_KEY, mCurrentPage);
 				} else if (mSortBy == POPULAR_MODE) {
-					call = apiService.getPopularMovies(PrivateApiKey.YOUR_API_KEY, mCurrentPage);
+					call = apiService.getPopularMovies(API_KEY, mCurrentPage);
 				} else {
-					call = apiService.getMovies(PrivateApiKey.YOUR_API_KEY, mCurrentPage);
+					call = apiService.getMovies(API_KEY, mCurrentPage);
 				}
 				String requestURL = call.request().url().toString();
 				Log.d("GridLoader", "Requested URL - " + requestURL);
@@ -71,10 +73,10 @@ public class GridLoader extends AsyncTaskLoader<GridData> {
 						data.setTotalPages(rootResponse.getTotalPages());
 					}
 				} else {
-					Log.d("GridLoader", "Request failed " + response.message());
+					Log.e("GridLoader", "Request failed " + response.message());
 				}
 			} catch (IOException ioe) {
-				Log.d("GridLoader", "IOException has occurred while fetching movies from API");
+				Log.e("GridLoader", "IOException has occurred while fetching movies from API");
 				ioe.getCause();
 				ioe.getStackTrace();
 			}

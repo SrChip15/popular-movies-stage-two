@@ -5,11 +5,11 @@ import android.content.Context;
 import android.support.v4.content.AsyncTaskLoader;
 import android.util.Log;
 
+import com.example.android.flixt.BuildConfig;
 import com.example.android.flixt.service.model.Movie;
 import com.example.android.flixt.service.model.Review;
 import com.example.android.flixt.service.model.ReviewResponse;
 import com.example.android.flixt.service.repository.AppDataRepository;
-import com.example.android.flixt.service.repository.PrivateApiKey;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,6 +22,7 @@ public class ReviewsLoader extends AsyncTaskLoader<List<Review>> {
 	private List<Review> mData;
 	private Movie movie;
 	private static final String TAG = ReviewsLoader.class.getSimpleName();
+	private static final String API_KEY = BuildConfig.API_KEY;
 
 	public ReviewsLoader(Context context, Movie movie) {
 		super(context);
@@ -46,7 +47,7 @@ public class ReviewsLoader extends AsyncTaskLoader<List<Review>> {
 			try {
 				Response<ReviewResponse> response = AppDataRepository.getInstance()
 						.getTmdbApiService()
-						.getReviews(movie.getId(), PrivateApiKey.YOUR_API_KEY)
+						.getReviews(movie.getId(), API_KEY)
 						.execute();
 				if (response.isSuccessful()) {
 					ReviewResponse body = response.body();
