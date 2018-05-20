@@ -1,11 +1,12 @@
 # Built application files
 /*/build/
+/build
 
 # Crashlytics configuations
 com_crashlytics_export_strings.xml
 
 # Local configuration file (sdk path, etc)
-local.properties
+*.properties
 
 # Gradle generated files
 .gradle/
@@ -14,17 +15,13 @@ local.properties
 .signing/
 
 # User-specific configurations
-.idea/libraries/
-.idea/workspace.xml
+.idea/
 .idea/tasks.xml
 .idea/.name
 .idea/compiler.xml
 .idea/copyright/profiles_settings.xml
 .idea/encodings.xml
-.idea/misc.xml
-.idea/modules.xml
 .idea/scopes/scope_settings.xml
-.idea/vcs.xml
 *.iml
 
 # OS-specific files
@@ -41,4 +38,3 @@ src/main/java/com/example/android/flixt/service/repository/PrivateApiKey.java
 src/main/res/drawable-v24/
 src/main/res/mipmap-anydpi-v26/
 src/test/
-/gradle.properties
