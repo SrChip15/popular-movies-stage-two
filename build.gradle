@@ -7,7 +7,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.2'
+        classpath 'com.android.tools.build:gradle:4.2.2'
         
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -28,13 +28,13 @@ task clean(type: Delete) {
 
 ext {
     //SDK
-    compileSdk = 26
+    compileSdk = 27
     minSdk = 16
-    targetSdk = 26
+    targetSdk = 27
 
     // Dependencies
-    buildToolsVersion = "26.0.2"
-    supportLibVersion = "26.1.0"
+    buildToolsVersion = "27.0.2"
+    supportLibVersion = "27.1.0"
     butterKnife="8.8.1"
     retrofit="2.3.0"
     picasso="2.5.2"
